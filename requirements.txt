@@ -1,0 +1,9 @@
+autopep8
+psutil
+pyaes
+pycodestyle
+Pyrogram
+PySocks
+python-dotenv
+TgCrypto
+toml
