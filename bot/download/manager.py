@@ -69,13 +69,13 @@ async def progress(received: int, total: int, download: Download):
     # Only update download progress if the last update is 1 second old
     # : This avoid flood on networks that is more than 1MB/s speed
     now = time()
-    if download.last_update != 0 and (time() - download.last_update) < 1:
+    if download.last_update != 0 and (time() - download.last_update) < 10:
         download.size = total
         download.last_call = now
         return
     percent = received / total * 100
     if download.last_call == 0:
-        download.last_call = now - 1
+        download.last_call = now - 100
     speed = (1024**2) / (now - download.last_call)
     avg_speed = received / (now - download.started)
     await download.progress_message.edit(
